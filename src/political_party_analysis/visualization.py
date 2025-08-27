@@ -58,7 +58,7 @@ def plot_density_estimation_results(
     pyplot.title(title)
 
 
-def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot = None):
+def plot_finnish_parties(transformed_data: pd.DataFrame, reduced_dim_data: pd.DataFrame, splot: pyplot.subplot = None):
     """Write a function to plot the following finnish parties on a 2D scatter plot"""
     finnish_parties = [
         {"parties": ["SDP", "VAS", "VIHR"], "country": "fin", "color": "r"},
@@ -67,4 +67,39 @@ def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot =
         {"parties": ["PS"], "country": "fin", "color": "k"},
     ]
     ##### YOUR CODE GOES HERE #####
-    pass
+    pyplot.figure()
+    splot = pyplot.subplot()
+
+    # Get min/max values for setting axis limits
+    x_min = reduced_dim_data.iloc[:, 0].min()
+    x_max = reduced_dim_data.iloc[:, 0].max()
+    y_min = reduced_dim_data.iloc[:, 1].min()
+    y_max = reduced_dim_data.iloc[:, 1].max()
+
+    # Add some padding
+    x_padding = (x_max - x_min) * 0.1
+    y_padding = (y_max - y_min) * 0.1
+
+    splot.set_xlim(x_min - x_padding, x_max + x_padding)
+    splot.set_ylim(y_min - y_padding, y_max + y_padding)
+
+    transformed_data.reset_index(inplace=True)
+
+    for parties in finnish_parties:
+        # Get indices for Finnish parties
+        party_indices = transformed_data[
+            (transformed_data["country"] == parties["country"]) & (transformed_data["party"].isin(parties["parties"]))
+        ].index.tolist()
+
+        # Plot each party name at its coordinates
+        for party_idx, party_name in zip(party_indices, parties["parties"]):
+            splot.text(
+                reduced_dim_data.iloc[party_idx, 0],
+                reduced_dim_data.iloc[party_idx, 1],
+                party_name,
+                color=parties["color"],
+            )
+
+    pyplot.xlabel("1st Component")
+    pyplot.ylabel("2nd Component")
+    pyplot.title("Finnish Parties")

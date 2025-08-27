@@ -5,7 +5,7 @@ from matplotlib import pyplot
 from political_party_analysis.dim_reducer import DimensionalityReducer
 from political_party_analysis.estimator import DensityEstimator
 from political_party_analysis.loader import DataLoader
-from political_party_analysis.visualization import scatter_plot, plot_density_estimation_results
+from political_party_analysis.visualization import scatter_plot, plot_density_estimation_results, plot_finnish_parties
 
 if __name__ == "__main__":
 
@@ -52,10 +52,16 @@ if __name__ == "__main__":
     pyplot.figure()
     splot = pyplot.subplot()
     ##### YOUR CODE GOES HERE #####
+    pyplot.scatter(data_loader.party_data["lrgen"], data_loader.party_data["lrecon"])
+    pyplot.axhline(y=0, color="k", linestyle="-", alpha=0.3)
+    pyplot.axvline(x=0, color="k", linestyle="-", alpha=0.3)
+    pyplot.xlabel("lrgen")
+    pyplot.ylabel("lrecon")
     pyplot.savefig(Path(__file__).parents[1].joinpath(*["plots", "left_right_parties.png"]))
     pyplot.title("Lefty/righty parties")
 
     # Plot finnish parties here
-    ##### YOUR CODE GOES HERE #####
+    plot_finnish_parties(data_loader.party_data, reduced_dim_data)
+    pyplot.savefig(Path(__file__).parents[1].joinpath(*["plots", "finnish_parties.png"]))
 
     print("Analysis Complete")
