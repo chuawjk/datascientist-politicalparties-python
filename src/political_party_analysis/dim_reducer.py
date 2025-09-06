@@ -15,4 +15,5 @@ class DimensionalityReducer:
         # TODO: If a PCA model doesn't exist, create one, fit it and transform the data
         # TODO: Else just transform the data
         # TODO: Print the variance explained ratios to assess goodness of fit
+        # TODO: Return as df for consistency
         pass

@@ -12,7 +12,7 @@ def mock_df() -> pd.DataFrame:
         "col1": [1, 2, 3, 3],
         "col2": [30.0, np.nan, 30.0, 30.0],  # NOTE: NaN needs to be filled
         "col3": [5, 7, 12, 12],
-        "non_feature": ["a", "b", "c", "c"],
+        "non_feature": ["a", "b", "c", "c"],  # NOTE: non-feature columns need to be dropped
         "all_nans": [np.nan] * 4,  # NOTE: column with all NaNs needs to be dropped
     }
     df = pd.DataFrame(data=data)

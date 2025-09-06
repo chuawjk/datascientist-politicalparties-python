@@ -18,6 +18,7 @@ class DensityEstimator:
     # 2. Define means and covariances for each group
     # 3. Ability to sample synthetic data from the model
 
+    # TODO: Add arg to specify number of GMM components
     def __init__(self, data: pd.DataFrame, dim_reducer, high_dim_feature_names):
         self.data = data
         self.dim_reducer_model = dim_reducer.model

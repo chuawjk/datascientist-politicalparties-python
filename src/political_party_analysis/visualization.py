@@ -58,7 +58,8 @@ def plot_density_estimation_results(
     pyplot.title(title)
 
 
-def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot = None):
+# TODO: Add new arg for 2D reduced_dim_data
+def plot_finnish_parties(transformed_data: pd.DataFrame, reduced_dim_data: pd.DataFrame, splot: pyplot.subplot = None):
     """Write a function to plot the following finnish parties on a 2D scatter plot"""
     finnish_parties = [
         {"parties": ["SDP", "VAS", "VIHR"], "country": "fin", "color": "r"},
@@ -67,7 +68,8 @@ def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot =
         {"parties": ["PS"], "country": "fin", "color": "k"},
     ]
     ##### YOUR CODE GOES HERE #####
-    # TODO: For each group of parties, get their indices from the data
+    # TODO: Set splot xlim and ylim to accommodate min and max of reduced_dim_data
+    # TODO: For each group of parties where matching "country" and "parties", get their indices from the data
     # TODO: Within each group, jointly iterate over indices and parties
     # TODO: Plot party names as colored text, using reduced dims as coordinates
     pass
