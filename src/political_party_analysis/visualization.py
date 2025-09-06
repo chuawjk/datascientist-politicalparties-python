@@ -67,4 +67,7 @@ def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot =
         {"parties": ["PS"], "country": "fin", "color": "k"},
     ]
     ##### YOUR CODE GOES HERE #####
+    # TODO: For each group of parties, get their indices from the data
+    # TODO: Within each group, jointly iterate over indices and parties
+    # TODO: Plot party names as colored text, using reduced dims as coordinates
     pass

@@ -12,6 +12,7 @@ class DataLoader:
 
     def __init__(self):
         self.party_data = self._download_data()
+        # TODO: Remove features specific to Turkish parties
         self.non_features = []
         self.index = ["party_id", "party", "country"]
 
@@ -25,6 +26,7 @@ class DataLoader:
     def remove_duplicates(self, df: pd.DataFrame) -> pd.DataFrame:
         """Write a function to remove duplicates in a dataframe"""
         ##### YOUR CODE GOES HERE #####
+        # TODO: Drop duplicates based on index columns
         pass
 
     def remove_nonfeature_cols(
@@ -33,16 +35,22 @@ class DataLoader:
         """Write a function to remove certain features cols and set certain cols as indices
         in a dataframe"""
         ##### YOUR CODE GOES HERE #####
+        # TODO: Drop non-feature cols
+        # TODO: Set index to self.index
         pass
 
     def handle_NaN_values(self, df: pd.DataFrame) -> pd.DataFrame:
         """Write a function to handle NaN values in a dataframe"""
         ##### YOUR CODE GOES HERE #####
+        # TODO: Fill na's with mean
+        # TODO: Drop columns that are all NaNs
         pass
 
     def scale_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """Write a function to normalise values in a dataframe. Use StandardScaler."""
         ##### YOUR CODE GOES HERE #####
+        # TODO: If there is no existing scaler, create a standard scaler, fit it and transform the data
+        # TODO: Else just transform the data
         pass
 
     def preprocess_data(self):

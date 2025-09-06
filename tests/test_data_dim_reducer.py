@@ -16,6 +16,6 @@ def mock_df() -> pd.DataFrame:
     return df
 
 def test_dimensionality_reducer(mock_df: pd.DataFrame):
-    dim_reducer = DimensionalityReducer("PCA", mock_df)
+    dim_reducer = DimensionalityReducer("PCA", mock_df)  # NOTE: class must use PCA to pass tests
     transformed_data = dim_reducer.transform()
     assert transformed_data.shape == (mock_df.shape[0], 2)

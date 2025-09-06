@@ -12,4 +12,7 @@ class DimensionalityReducer:
 
     ##### YOUR CODE GOES HERE #####
     def transform(self):
+        # TODO: If a PCA model doesn't exist, create one, fit it and transform the data
+        # TODO: Else just transform the data
+        # TODO: Print the variance explained ratios to assess goodness of fit
         pass

@@ -8,12 +8,12 @@ from political_party_analysis.loader import DataLoader
 @pytest.fixture
 def mock_df() -> pd.DataFrame:
     data = {
-        "id": [0, 1, 2, 2],
+        "id": [0, 1, 2, 2],  # NOTE: duplicate index needs to be removed
         "col1": [1, 2, 3, 3],
-        "col2": [30.0, np.nan, 30.0, 30.0],
+        "col2": [30.0, np.nan, 30.0, 30.0],  # NOTE: NaN needs to be filled
         "col3": [5, 7, 12, 12],
         "non_feature": ["a", "b", "c", "c"],
-        "all_nans": [np.nan] * 4,
+        "all_nans": [np.nan] * 4,  # NOTE: column with all NaNs needs to be dropped
     }
     df = pd.DataFrame(data=data)
     return df
