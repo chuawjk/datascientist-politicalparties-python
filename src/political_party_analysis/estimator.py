@@ -1,3 +1,6 @@
+from typing import Tuple
+
+import numpy as np
 import pandas as pd
 from sklearn.mixture import GaussianMixture
 
@@ -18,18 +21,31 @@ class DensityEstimator:
         self.distribution_model = GaussianMixture(n_components=self.n_components)
 
     ##### YOUR CODE GOES HERE #####
-    def fit(self):
+    def model_distribution(self) -> pd.Series:
+        """
+        Fit GMM to the data, then return the predicted labels of the data.
+
+        Returns:
+            pd.Series: Predicted labels of the data.
+        """
         self.distribution_model.fit(self.data)
+        return pd.Series(self.distribution_model.predict(self.data))
 
-    def sample_parties(self, n_samples: int = 10):
-        self.sampled_parties = self.distribution_model.sample(n_samples)
+    def sample_parties(self, n_samples: int = 10) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Sample synthetic parties from the distribution model.
 
-    def map_to_high_dim(self):
-        reduced_dim_samples, _ = self.sample_parties()
-        high_dim_samples = self.dim_reducer_model.inverse_transform(reduced_dim_samples)
-        high_dim_samples_df = pd.DataFrame(high_dim_samples, columns=self.feature_names)
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: Sampled parties and their labels.
+        """
+        return self.distribution_model.sample(n_samples)
 
-    def run_analysis(self):
-        self.fit()
-        self.sample_parties()
-        self.map_to_high_dim()
+    def map_to_high_dim(self, sampled_parties: np.ndarray) -> pd.DataFrame:
+        """
+        Map the sampled parties back to the original higher dimensional space.
+
+        Returns:
+            pd.DataFrame: Sampled parties in the original higher dimensional space.
+        """
+        high_dim_samples = self.dim_reducer_model.inverse_transform(sampled_parties)
+        return pd.DataFrame(high_dim_samples, columns=self.feature_names)

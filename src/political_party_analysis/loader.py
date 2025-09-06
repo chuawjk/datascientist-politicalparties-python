@@ -13,7 +13,7 @@ class DataLoader:
 
     def __init__(self):
         self.party_data = self._download_data()
-        # Exclude these columns are missing for non-Turkish parties
+        # Exclude these columns that are missing for non-Turkish parties
         self.non_features = ["eu_econ_require", "eu_political_require", "eu_googov_require"]
         self.index = ["party_id", "party", "country"]
 
@@ -49,9 +49,13 @@ class DataLoader:
     def scale_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """Write a function to normalise values in a dataframe. Use StandardScaler."""
         ##### YOUR CODE GOES HERE #####
+        # If there is no existing scaler, create one and fit it to the data
         if not hasattr(self, "scaler"):
             self.scaler = StandardScaler()
-        df = pd.DataFrame(self.scaler.fit_transform(df), columns=df.columns, index=df.index)
+            df = pd.DataFrame(self.scaler.fit_transform(df), columns=df.columns, index=df.index)
+        # Else transform the data using parameters from the existing scaler
+        else:
+            df = pd.DataFrame(self.scaler.transform(df), columns=df.columns, index=df.index)
         return df
 
     def preprocess_data(self):

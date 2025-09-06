@@ -20,7 +20,13 @@ class DimensionalityReducer:
         """
         Transform the data to the specified number of dimensions using PCA.
         """
-        self.model.fit(self.data)
+        # If there is no existing model, create one and fit it to the data
+        if not hasattr(self.model, "explained_variance_ratio_"):
+            self.model.fit(self.data)
+            print(
+                f"Fitted new dimensionality reduction model. Explained variance ratio: {self.model.explained_variance_ratio_.tolist()}"
+            )
+
         reduced_dim_data = pd.DataFrame(
             self.model.transform(self.data),
             columns=[f"dim_{i}" for i in range(self.n_components)],

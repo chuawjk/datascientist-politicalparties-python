@@ -37,8 +37,7 @@ if __name__ == "__main__":
     )
     # Plot density estimation results here
     ##### YOUR CODE GOES HERE #####
-    estimator.fit()
-    pred_labels = estimator.distribution_model.predict(reduced_dim_data)
+    pred_labels = estimator.model_distribution()
     plot_density_estimation_results(
         reduced_dim_data,
         pred_labels,
@@ -57,8 +56,9 @@ if __name__ == "__main__":
     pyplot.axvline(x=0, color="k", linestyle="-", alpha=0.3)
     pyplot.xlabel("lrgen")
     pyplot.ylabel("lrecon")
-    pyplot.savefig(Path(__file__).parents[1].joinpath(*["plots", "left_right_parties.png"]))
     pyplot.title("Lefty/righty parties")
+    pyplot.savefig(Path(__file__).parents[1].joinpath(*["plots", "left_right_parties.png"]))
+
 
     # Plot finnish parties here
     plot_finnish_parties(data_loader.party_data, reduced_dim_data)
