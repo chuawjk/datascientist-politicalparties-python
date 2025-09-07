@@ -59,7 +59,7 @@ def plot_density_estimation_results(
 
 
 # TODO: Add new arg for 2D reduced_dim_data
-def plot_finnish_parties(transformed_data: pd.DataFrame, reduced_dim_data: pd.DataFrame, splot: pyplot.subplot = None):
+def plot_finnish_parties(transformed_data: pd.DataFrame, splot: pyplot.subplot = None):
     """Write a function to plot the following finnish parties on a 2D scatter plot"""
     finnish_parties = [
         {"parties": ["SDP", "VAS", "VIHR"], "country": "fin", "color": "r"},
